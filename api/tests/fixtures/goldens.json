@@ -1,0 +1,651 @@
+[
+ {
+  "name": "flat rate, one day",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "AEST",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "singleRate",
+      "singleRate": {
+       "rates": [
+        {
+         "unitPrice": "0.3"
+        }
+       ]
+      },
+      "dailySupplyCharge": "1.0"
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-01-05T12:00",
+    10,
+    "import"
+   ]
+  ],
+  "cents": 440,
+  "working": "10 kWh x $0.30 = 3.00, supply 1.00, (3.00 + 1.00) x 1.1 GST = 4.40"
+ },
+ {
+  "name": "flat rate, two days of supply",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "AEST",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "singleRate",
+      "singleRate": {
+       "rates": [
+        {
+         "unitPrice": "0.25"
+        }
+       ]
+      },
+      "dailySupplyCharge": "0.9"
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-01-01T08:00",
+    5,
+    "import"
+   ],
+   [
+    "2026-01-02T08:00",
+    5,
+    "import"
+   ]
+  ],
+  "cents": 473,
+  "working": "10 x 0.25 = 2.50, supply 2 x 0.90 = 1.80, 4.30 x 1.1 = 4.73"
+ },
+ {
+  "name": "feed-in credit has no GST",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "AEST",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "singleRate",
+      "singleRate": {
+       "rates": [
+        {
+         "unitPrice": "0.3"
+        }
+       ]
+      },
+      "dailySupplyCharge": "1.0"
+     }
+    ],
+    "solarFeedInTariff": [
+     {
+      "payerType": "RETAILER",
+      "tariffUType": "singleTariff",
+      "singleTariff": {
+       "rates": [
+        {
+         "unitPrice": "0.05"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-01-05T12:00",
+    10,
+    "import"
+   ],
+   [
+    "2026-01-05T12:30",
+    20,
+    "export"
+   ]
+  ],
+  "cents": 340,
+  "working": "(3.00 + 1.00) x 1.1 = 4.40, minus 20 x 0.05 = 1.00, = 3.40"
+ },
+ {
+  "name": "time of use, window wraps midnight",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "AEST",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "timeOfUseRates",
+      "dailySupplyCharge": "1.2",
+      "timeOfUseRates": [
+       {
+        "rates": [
+         {
+          "unitPrice": "0.5"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "16:00",
+          "endTime": "20:59"
+         }
+        ]
+       },
+       {
+        "rates": [
+         {
+          "unitPrice": "0.2"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "21:00",
+          "endTime": "15:59"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-01-05T17:00",
+    2,
+    "import"
+   ],
+   [
+    "2026-01-05T03:00",
+    3,
+    "import"
+   ]
+  ],
+  "cents": 308,
+  "working": "2 x 0.50 + 3 x 0.20 = 1.60, + 1.20 supply = 2.80, x 1.1 = 3.08"
+ },
+ {
+  "name": "weekday peak vs weekend",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "AEST",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "timeOfUseRates",
+      "dailySupplyCharge": "1.0",
+      "timeOfUseRates": [
+       {
+        "rates": [
+         {
+          "unitPrice": "0.45"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI"
+          ],
+          "startTime": "07:00",
+          "endTime": "21:59"
+         }
+        ]
+       },
+       {
+        "rates": [
+         {
+          "unitPrice": "0.22"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI"
+          ],
+          "startTime": "22:00",
+          "endTime": "06:59"
+         },
+         {
+          "days": [
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "00:00",
+          "endTime": "23:59"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-01-03T12:00",
+    4,
+    "import"
+   ],
+   [
+    "2026-01-05T12:00",
+    4,
+    "import"
+   ]
+  ],
+  "cents": 515,
+  "working": "Sat 4 x 0.22 = 0.88, Mon 4 x 0.45 = 1.80, supply 2 days = 2.00, 4.68 x 1.1 = 5.148 -> 515c"
+ },
+ {
+  "name": "boundaries at :59 and :00",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "AEST",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "timeOfUseRates",
+      "dailySupplyCharge": "0.95",
+      "timeOfUseRates": [
+       {
+        "rates": [
+         {
+          "unitPrice": "0.5"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "06:00",
+          "endTime": "09:59"
+         },
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "16:00",
+          "endTime": "23:59"
+         }
+        ]
+       },
+       {
+        "rates": [
+         {
+          "unitPrice": "0.3"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "10:00",
+          "endTime": "15:59"
+         }
+        ]
+       },
+       {
+        "rates": [
+         {
+          "unitPrice": "0.15"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "00:00",
+          "endTime": "05:59"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-01-05T09:30",
+    1,
+    "import"
+   ],
+   [
+    "2026-01-05T10:00",
+    1,
+    "import"
+   ],
+   [
+    "2026-01-05T15:30",
+    1,
+    "import"
+   ],
+   [
+    "2026-01-05T16:00",
+    1,
+    "import"
+   ],
+   [
+    "2026-01-05T05:30",
+    1,
+    "import"
+   ]
+  ],
+  "cents": 297,
+  "working": "0.50 + 0.30 + 0.30 + 0.50 + 0.15 = 1.75, + 0.95 = 2.70, x 1.1 = 2.97"
+ },
+ {
+  "name": "local time in summer (daylight saving)",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "LOCAL",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "timeOfUseRates",
+      "dailySupplyCharge": "1.0",
+      "timeOfUseRates": [
+       {
+        "rates": [
+         {
+          "unitPrice": "0.5"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "15:00",
+          "endTime": "20:59"
+         }
+        ]
+       },
+       {
+        "rates": [
+         {
+          "unitPrice": "0.2"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "21:00",
+          "endTime": "14:59"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-01-15T14:30",
+    2,
+    "import"
+   ]
+  ],
+  "cents": 220,
+  "working": "14:30 AEST is 15:30 in Sydney in January, so peak: 2 x 0.50 = 1.00, + 1.00, x 1.1 = 2.20"
+ },
+ {
+  "name": "local time in winter",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "LOCAL",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "timeOfUseRates",
+      "dailySupplyCharge": "1.0",
+      "timeOfUseRates": [
+       {
+        "rates": [
+         {
+          "unitPrice": "0.5"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "15:00",
+          "endTime": "20:59"
+         }
+        ]
+       },
+       {
+        "rates": [
+         {
+          "unitPrice": "0.2"
+         }
+        ],
+        "timeOfUse": [
+         {
+          "days": [
+           "MON",
+           "TUE",
+           "WED",
+           "THU",
+           "FRI",
+           "SAT",
+           "SUN"
+          ],
+          "startTime": "21:00",
+          "endTime": "14:59"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-07-15T14:30",
+    2,
+    "import"
+   ]
+  ],
+  "cents": 154,
+  "working": "no daylight saving in July, 14:30 is off-peak: 2 x 0.20 = 0.40, + 1.00, x 1.1 = 1.54"
+ },
+ {
+  "name": "seasonal tariff periods",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "AEST",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "singleRate",
+      "singleRate": {
+       "rates": [
+        {
+         "unitPrice": "0.4"
+        }
+       ]
+      },
+      "dailySupplyCharge": "1.2",
+      "startDate": "11-01",
+      "endDate": "03-31"
+     },
+     {
+      "rateBlockUType": "singleRate",
+      "singleRate": {
+       "rates": [
+        {
+         "unitPrice": "0.25"
+        }
+       ]
+      },
+      "dailySupplyCharge": "1.0",
+      "startDate": "04-01",
+      "endDate": "10-31"
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-01-10T12:00",
+    10,
+    "import"
+   ],
+   [
+    "2026-06-10T12:00",
+    10,
+    "import"
+   ]
+  ],
+  "cents": 957,
+  "working": "Jan 10 x 0.40 = 4.00 + 1.20 supply, Jun 10 x 0.25 = 2.50 + 1.00 supply, 8.70 x 1.1 = 9.57"
+ },
+ {
+  "name": "same-price blocks, three days with solar",
+  "plan": {
+   "electricityContract": {
+    "timeZone": "AEST",
+    "tariffPeriod": [
+     {
+      "rateBlockUType": "singleRate",
+      "dailySupplyCharge": "1.10",
+      "singleRate": {
+       "rates": [
+        {
+         "unitPrice": "0.28",
+         "volume": 3900
+        },
+        {
+         "unitPrice": "0.28"
+        }
+       ]
+      }
+     }
+    ],
+    "solarFeedInTariff": [
+     {
+      "payerType": "RETAILER",
+      "tariffUType": "singleTariff",
+      "singleTariff": {
+       "rates": [
+        {
+         "unitPrice": "0.07"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "intervals": [
+   [
+    "2026-02-01T19:00",
+    8,
+    "import"
+   ],
+   [
+    "2026-02-01T12:00",
+    5,
+    "export"
+   ],
+   [
+    "2026-02-02T19:00",
+    8,
+    "import"
+   ],
+   [
+    "2026-02-02T12:00",
+    5,
+    "export"
+   ],
+   [
+    "2026-02-03T19:00",
+    8,
+    "import"
+   ],
+   [
+    "2026-02-03T12:00",
+    5,
+    "export"
+   ]
+  ],
+  "cents": 997,
+  "working": "24 x 0.28 = 6.72, supply 3 x 1.10 = 3.30, 10.02 x 1.1 = 11.022, minus 15 x 0.07 = 1.05, = 9.972 -> 997c"
+ }
+]
