@@ -77,9 +77,12 @@ def result(file_id: int):
         if out["state"] != "done":
             return out
         out["quotes"] = conn.execute(
-            """SELECT p.id, p.retailer, p.name, p.tariff_type, p.raw, q.annual_cost_cents, q.breakdown
-               FROM quotes q JOIN plans p ON p.id = q.plan_id
-               WHERE q.file_id = %s ORDER BY q.annual_cost_cents LIMIT 5""",
+            # retailers publish near-identical variants under one name; show each name once
+            """SELECT * FROM (
+                 SELECT DISTINCT ON (p.retailer, p.name) p.id, p.retailer, p.name, p.tariff_type, p.raw, q.annual_cost_cents, q.breakdown
+                 FROM quotes q JOIN plans p ON p.id = q.plan_id
+                 WHERE q.file_id = %s ORDER BY p.retailer, p.name, q.annual_cost_cents) best
+               ORDER BY annual_cost_cents LIMIT 5""",
             (file_id,),
         ).fetchall()
         out["usage_by_hour"] = conn.execute(

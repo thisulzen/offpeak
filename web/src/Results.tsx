@@ -124,7 +124,7 @@ function Battery({ b }: { b: NonNullable<Result['battery']> }) {
       <p>
         {b.payback_years === null
           ? "You don't export enough solar for a battery to save money on these prices."
-          : <>A 10 kWh battery soaking up the solar you now export would save roughly <strong>${b.saving_per_year} a year</strong>.
+          : <>A 10 kWh battery soaking up the solar you now export would save roughly <strong>${b.saving_per_year.toLocaleString("en-AU")} a year</strong>.
             At about ${b.cost.toLocaleString('en-AU')} installed, that's a payback of around <strong>{b.payback_years} years</strong>.</>}
       </p>
       <p className="note">Rough guide only: one battery size, cheapest plan's average rate, no grid charging or VPP payments.</p>
