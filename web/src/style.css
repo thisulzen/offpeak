@@ -1,0 +1,20 @@
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; background: #fafaf7; color: #1d1d1b; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { margin-bottom: 0; }
+.lede, .note { color: #555; }
+.note { font-size: 14px; }
+section { margin-top: 32px; }
+.verdict { font-size: 18px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #ddd; font-size: 14px; }
+td:last-child, th:last-child { text-align: right; white-space: nowrap; }
+textarea { width: 100%; box-sizing: border-box; font: inherit; }
+button { font: inherit; padding: 6px 14px; margin: 8px 0; }
+.bars { display: flex; align-items: flex-end; gap: 2px; height: 140px; }
+.bars div { flex: 1; background: #2f7d5b; min-height: 1px; }
+.axis { display: flex; justify-content: space-between; font-size: 12px; color: #777; }
+@media (prefers-color-scheme: dark) {
+  body { background: #161615; color: #eee; }
+  .lede, .note { color: #aaa; }
+  th, td { border-color: #333; }
+}
