@@ -4,7 +4,7 @@ CDR prices are dollars excluding GST. We add 10% GST to usage and supply;
 feed-in credits carry no GST. Controlled load is ignored.
 """
 from datetime import date, timedelta, timezone
-from functools import lru_cache
+from functools import cache
 from zoneinfo import ZoneInfo
 
 DAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
@@ -105,7 +105,7 @@ def not_priceable(raw):
         return f"malformed plan ({e!r})"
 
 
-@lru_cache(maxsize=None)
+@cache
 def to_local(ts):
     return ts.replace(tzinfo=AEST).astimezone(LOCAL).replace(tzinfo=None)
 

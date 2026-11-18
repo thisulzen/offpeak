@@ -76,7 +76,7 @@ def check(parsed):
     for nmi, suffix, d in seen:
         by_stream.setdefault((nmi, suffix), set()).add(d)
     span = set()
-    for (nmi, suffix), days in by_stream.items():
+    for (_, suffix), days in by_stream.items():
         d, last = min(days), max(days)
         while d <= last:
             span.add(d)

@@ -7,8 +7,8 @@ from psycopg.rows import dict_row
 URL = os.environ.get("DATABASE_URL", "postgresql://offpeak:offpeak@localhost:5432/offpeak")
 
 
-def connect(url=URL):
-    return psycopg.connect(url, row_factory=dict_row, autocommit=True)
+def connect(url=None):
+    return psycopg.connect(url or URL, row_factory=dict_row, autocommit=True)
 
 
 def migrate(conn):

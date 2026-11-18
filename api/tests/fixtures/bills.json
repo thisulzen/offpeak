@@ -1,0 +1,247 @@
+[
+ {
+  "text": "AGL Electricity Account\nBill period 01 Jul 2026 to 30 Sep 2026 (59 days)\nYour usage\n  General usage   558 kWh @ 31.11c/kWh   $173.59\n  Supply charge   59 days @ 87.41c/day   $51.57\n  Solar feed-in   146 kWh @ 5.02c/kWh   -$7.33\nTotal amount due $217.84\n",
+  "expected": {
+   "retailer": "AGL",
+   "billing_days": 59,
+   "usage_kwh": 558.0,
+   "usage_rate_c": 31.11,
+   "supply_c_per_day": 87.41,
+   "feed_in_c": 5.02,
+   "total_dollars": 217.84
+  }
+ },
+ {
+  "text": "Thanks for choosing Origin.\nAmount due: $422.94  Due date 14 Oct 2026\nThis bill covers 59 days.\nCharges (GST incl.)\nAnytime energy ........ 1443 kWh x $0.2504 per kWh\nDaily supply charge ... $1.1037 per day\nFeed-in credit ........ $0.0071 per kWh\n",
+  "expected": {
+   "retailer": "Origin",
+   "billing_days": 59,
+   "usage_kwh": 1443.0,
+   "usage_rate_c": 25.04,
+   "supply_c_per_day": 110.37,
+   "feed_in_c": 0.71,
+   "total_dollars": 422.94
+  }
+ },
+ {
+  "text": "ALINTA\nTAX INVOICE\nPeriod: 61 days\nYou used 393 kWh this period, about 6.4 kWh a day.\nRates: peak 28.332 c per kWh, supply 112.552 c per day, solar 0.8 c per kWh\nPlease pay $174.97\n",
+  "expected": {
+   "retailer": "Alinta",
+   "billing_days": 61,
+   "usage_kwh": 393.0,
+   "usage_rate_c": 28.332,
+   "supply_c_per_day": 112.552,
+   "feed_in_c": 0.8,
+   "total_dollars": 174.97
+  }
+ },
+ {
+  "text": "Hi there, here's your Alinta bill.\nConsumption: 707 kWh over 30 days\nUsage rate 35.35¢/kWh | Supply 114.15¢/day | Feed-in tariff 0.84¢/kWh\nTotal due $ 278.72\n",
+  "expected": {
+   "retailer": "Alinta",
+   "billing_days": 30,
+   "usage_kwh": 707.0,
+   "usage_rate_c": 35.35,
+   "supply_c_per_day": 114.15,
+   "feed_in_c": 0.84,
+   "total_dollars": 278.72
+  }
+ },
+ {
+  "text": "Account summary - Red Energy\nPrevious balance $0.00\nNew charges $ 181.12\nYour electricity: 61-day billing period\n  Off-peak usage 117 kWh at 22.86 c/kWh\n  Peak usage 234 kWh at 41.57 c/kWh\n  Supply charge at 87.33 c/day\n  Solar export credit at 5.22 c/kWh\nTotal 181.12\n",
+  "expected": {
+   "retailer": "Red Energy",
+   "billing_days": 61,
+   "usage_kwh": 351.0,
+   "usage_rate_c": 41.57,
+   "supply_c_per_day": 87.33,
+   "feed_in_c": 5.22,
+   "total_dollars": 181.12
+  }
+ },
+ {
+  "text": "AGL Electricity Account\nBill period 01 Jul 2026 to 30 Sep 2026 (61 days)\nYour usage\n  General usage   545 kWh @ 33.73c/kWh   $183.83\n  Supply charge   61 days @ 113.55c/day   $69.27\n  Solar feed-in   748 kWh @ 3.58c/kWh   -$26.78\nTotal amount due $226.32\n",
+  "expected": {
+   "retailer": "AGL",
+   "billing_days": 61,
+   "usage_kwh": 545.0,
+   "usage_rate_c": 33.73,
+   "supply_c_per_day": 113.55,
+   "feed_in_c": 3.58,
+   "total_dollars": 226.32
+  }
+ },
+ {
+  "text": "Thanks for choosing Origin.\nAmount due: $179.61  Due date 14 Oct 2026\nThis bill covers 31 days.\nCharges (GST incl.)\nAnytime energy ........ 461 kWh x $0.3447 per kWh\nDaily supply charge ... $1.1695 per day\nFeed-in credit ........ $0.0255 per kWh\n",
+  "expected": {
+   "retailer": "Origin",
+   "billing_days": 31,
+   "usage_kwh": 461.0,
+   "usage_rate_c": 34.47,
+   "supply_c_per_day": 116.95,
+   "feed_in_c": 2.55,
+   "total_dollars": 179.61
+  }
+ },
+ {
+  "text": "ALINTA\nTAX INVOICE\nPeriod: 91 days\nYou used 378 kWh this period, about 4.2 kWh a day.\nRates: peak 34.159 c per kWh, supply 115.950 c per day, solar 3.2 c per kWh\nPlease pay $215.63\n",
+  "expected": {
+   "retailer": "Alinta",
+   "billing_days": 91,
+   "usage_kwh": 378.0,
+   "usage_rate_c": 34.159,
+   "supply_c_per_day": 115.95,
+   "feed_in_c": 3.2,
+   "total_dollars": 215.63
+  }
+ },
+ {
+  "text": "Hi there, here's your Alinta bill.\nConsumption: 893 kWh over 61 days\nUsage rate 32.38¢/kWh | Supply 131.17¢/day | Feed-in tariff 2.49¢/kWh\nTotal due $ 361.60\n",
+  "expected": {
+   "retailer": "Alinta",
+   "billing_days": 61,
+   "usage_kwh": 893.0,
+   "usage_rate_c": 32.38,
+   "supply_c_per_day": 131.17,
+   "feed_in_c": 2.49,
+   "total_dollars": 361.6
+  }
+ },
+ {
+  "text": "Account summary - Red Energy\nPrevious balance $0.00\nNew charges $ 294.00\nYour electricity: 92-day billing period\n  Off-peak usage 206 kWh at 20.12 c/kWh\n  Peak usage 412 kWh at 36.58 c/kWh\n  Supply charge at 97.20 c/day\n  Solar export credit at 3.66 c/kWh\nTotal 294.00\n",
+  "expected": {
+   "retailer": "Red Energy",
+   "billing_days": 92,
+   "usage_kwh": 618.0,
+   "usage_rate_c": 36.58,
+   "supply_c_per_day": 97.2,
+   "feed_in_c": 3.66,
+   "total_dollars": 294.0
+  }
+ },
+ {
+  "text": "AGL Electricity Account\nBill period 01 Jul 2026 to 30 Sep 2026 (61 days)\nYour usage\n  General usage   953 kWh @ 37.13c/kWh   $353.85\n  Supply charge   61 days @ 99.40c/day   $60.63\n  Solar feed-in   170 kWh @ 5.89c/kWh   -$10.01\nTotal amount due $404.47\n",
+  "expected": {
+   "retailer": "AGL",
+   "billing_days": 61,
+   "usage_kwh": 953.0,
+   "usage_rate_c": 37.13,
+   "supply_c_per_day": 99.4,
+   "feed_in_c": 5.89,
+   "total_dollars": 404.47
+  }
+ },
+ {
+  "text": "Thanks for choosing Origin.\nAmount due: $363.10  Due date 14 Oct 2026\nThis bill covers 90 days.\nCharges (GST incl.)\nAnytime energy ........ 1106 kWh x $0.2697 per kWh\nDaily supply charge ... $1.0210 per day\nFeed-in credit ........ $0.0563 per kWh\n",
+  "expected": {
+   "retailer": "Origin",
+   "billing_days": 90,
+   "usage_kwh": 1106.0,
+   "usage_rate_c": 26.97,
+   "supply_c_per_day": 102.1,
+   "feed_in_c": 5.63,
+   "total_dollars": 363.1
+  }
+ },
+ {
+  "text": "ALINTA\nTAX INVOICE\nPeriod: 30 days\nYou used 408 kWh this period, about 13.6 kWh a day.\nRates: peak 37.762 c per kWh, supply 113.651 c per day, solar 5.3 c per kWh\nPlease pay $168.50\n",
+  "expected": {
+   "retailer": "Alinta",
+   "billing_days": 30,
+   "usage_kwh": 408.0,
+   "usage_rate_c": 37.762,
+   "supply_c_per_day": 113.651,
+   "feed_in_c": 5.3,
+   "total_dollars": 168.5
+  }
+ },
+ {
+  "text": "Hi there, here's your Alinta bill.\nConsumption: 967 kWh over 59 days\nUsage rate 34.70¢/kWh | Supply 113.99¢/day | Feed-in tariff 3.01¢/kWh\nTotal due $ 398.44\n",
+  "expected": {
+   "retailer": "Alinta",
+   "billing_days": 59,
+   "usage_kwh": 967.0,
+   "usage_rate_c": 34.7,
+   "supply_c_per_day": 113.99,
+   "feed_in_c": 3.01,
+   "total_dollars": 398.44
+  }
+ },
+ {
+  "text": "Account summary - Red Energy\nPrevious balance $0.00\nNew charges $ 481.39\nYour electricity: 59-day billing period\n  Off-peak usage 407 kWh at 20.10 c/kWh\n  Peak usage 813 kWh at 36.55 c/kWh\n  Supply charge at 88.25 c/day\n  Solar export credit at 4.52 c/kWh\nTotal 481.39\n",
+  "expected": {
+   "retailer": "Red Energy",
+   "billing_days": 59,
+   "usage_kwh": 1220.0,
+   "usage_rate_c": 36.55,
+   "supply_c_per_day": 88.25,
+   "feed_in_c": 4.52,
+   "total_dollars": 481.39
+  }
+ },
+ {
+  "text": "ORIGIN ENERGY  |  Electricity bill\nBilling period: 12/06/2026 - 10/09/2026 (91 days)\nWhat you used: 1,284.6 kWh\nPeak 1,284.6 kWh @ $0.3366/kWh  $432.39\nDaily supply 91 days @ $1.1880/day  $108.11\nSolar credits 402.1 kWh @ $0.0400/kWh  -$16.08\nGST is included in the above.\nAmount payable $524.42 by 1 Oct 2026",
+  "expected": {
+   "retailer": "Origin",
+   "billing_days": 91,
+   "usage_kwh": 1284.6,
+   "usage_rate_c": 33.66,
+   "supply_c_per_day": 118.8,
+   "feed_in_c": 4.0,
+   "total_dollars": 524.42
+  },
+  "held_out": true
+ },
+ {
+  "text": "Red Energy\nYour bill at a glance\nCharges this bill: $611.90\nDays in period 92\nElectricity usage - all day rate 29.48 cents per kWh (1,622 kWh)\nService to property charge 101.2 cents per day\nNo solar on this account",
+  "expected": {
+   "retailer": "Red Energy",
+   "billing_days": 92,
+   "usage_kwh": 1622.0,
+   "usage_rate_c": 29.48,
+   "supply_c_per_day": 101.2,
+   "feed_in_c": null,
+   "total_dollars": 611.9
+  },
+  "held_out": true
+ },
+ {
+  "text": "EnergyAustralia - Tax invoice\nTotal amount due $389.07\nFor the 62 days 01 Jul 26 - 31 Aug 26\nYour average daily use: 11.9 kWh\nTotal usage 738 kWh\nEnergy charge 36.41c per kWh\nSupply charge 98.55c per day\nSolar feed-in 2.5c per kWh, 211 kWh exported",
+  "expected": {
+   "retailer": "EnergyAustralia",
+   "billing_days": 62,
+   "usage_kwh": 738.0,
+   "usage_rate_c": 36.41,
+   "supply_c_per_day": 98.55,
+   "feed_in_c": 2.5,
+   "total_dollars": 389.07
+  },
+  "held_out": true
+ },
+ {
+  "text": "Alinta Energy\nAccount 88213 | Quarterly bill | 90 days\nUsage charges\n    Anytime     904 kWh    30.250 c/kWh    $273.46\nFixed charges\n    Supply      90 days    112.750 c/day   $101.48\nCredits\n    Feed-in     55 kWh     5.000 c/kWh     -$2.75\nBalance to pay     $372.19",
+  "expected": {
+   "retailer": "Alinta",
+   "billing_days": 90,
+   "usage_kwh": 904.0,
+   "usage_rate_c": 30.25,
+   "supply_c_per_day": 112.75,
+   "feed_in_c": 5.0,
+   "total_dollars": 372.19
+  },
+  "held_out": true
+ },
+ {
+  "text": "AGL bill summary\nYou owe $205.33, due 3 Nov\nUsage period 30 days. We read your meter: 540 kWh used.\nPrices incl. GST: usage 31.9 c/kWh. Daily charge 1.27 $/day. Solar FiT: 3c/kWh.",
+  "expected": {
+   "retailer": "AGL",
+   "billing_days": 30,
+   "usage_kwh": 540.0,
+   "usage_rate_c": 31.9,
+   "supply_c_per_day": 127.0,
+   "feed_in_c": 3.0,
+   "total_dollars": 205.33
+  },
+  "held_out": true
+ }
+]
