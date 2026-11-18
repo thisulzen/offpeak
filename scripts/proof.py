@@ -9,6 +9,7 @@ import signal
 import subprocess
 import sys
 import time
+import warnings
 from datetime import datetime
 from pathlib import Path
 
@@ -20,11 +21,12 @@ import psycopg  # noqa: E402
 
 import gen_nem12  # noqa: E402
 
+warnings.filterwarnings("ignore", "Using `httpx`")
 ADMIN_URL = os.environ.get("DATABASE_URL", "postgresql://offpeak:offpeak@localhost:5432/offpeak")
 
 
 def fresh_db(name):
-    """Recreate an empty database next to the dev one, load the plan snapshot, return its URL."""
+    # a throwaway database beside the dev one, with the plan snapshot loaded
     with psycopg.connect(ADMIN_URL, autocommit=True) as c:
         c.execute(f"DROP DATABASE IF EXISTS {name} WITH (FORCE)")
         c.execute(f"CREATE DATABASE {name}")

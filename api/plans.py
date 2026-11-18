@@ -1,4 +1,3 @@
-"""Retail plans from the CDR Energy Product Reference Data API, with a committed snapshot fallback."""
 import json
 import sys
 import urllib.request
@@ -55,7 +54,6 @@ def save_snapshot(plans):
 
 
 def load(conn, live=True):
-    """Upsert plans; returns where they came from."""
     source = None
     if live:
         try:

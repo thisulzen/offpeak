@@ -36,14 +36,12 @@ def can_move(src, dst):
     return dst in NEXT.get(src, set()) or (dst == "failed" and src in NEXT)
 
 
-def move(conn, job, dst, **fields):
+def move(conn, job, dst):
     if not can_move(job["state"], dst):
         raise ValueError(f"job {job['id']}: {job['state']} -> {dst} not allowed")
-    sets = ", ".join(f"{k} = %({k})s" for k in fields)
     cur = conn.execute(
-        f"UPDATE jobs SET state = %(dst)s, updated_at = now(){', ' + sets if sets else ''} "
-        "WHERE id = %(id)s AND state = %(src)s",
-        {"dst": dst, "id": job["id"], "src": job["state"], **fields},
+        "UPDATE jobs SET state = %s, updated_at = now() WHERE id = %s AND state = %s",
+        (dst, job["id"], job["state"]),
     )
     if cur.rowcount != 1:
         raise RuntimeError(f"job {job['id']} changed under us")
@@ -105,7 +103,8 @@ def price_step(conn, job):
 
 def run(conn, job):
     if job["attempts"] > MAX_ATTEMPTS:
-        move(conn, job, "failed", error=job["error"] or "too many attempts", locked_at=None)
+        move(conn, job, "failed")
+        conn.execute("UPDATE jobs SET locked_at = NULL WHERE id = %s", (job["id"],))
         return
     try:
         if job["state"] == "queued":
@@ -126,11 +125,10 @@ def run(conn, job):
 
 def refresh_plans(conn):
     stale = conn.execute("SELECT coalesce(max(fetched_at) < now() - interval '1 day', true) AS s FROM plans").fetchone()["s"]
-    if stale and conn.execute("SELECT pg_try_advisory_lock(7) AS ok").fetchone()["ok"]:
-        try:
-            print("plans:", plans.load(conn, live=os.environ.get("PLANS_SOURCE") != "snapshot"))
-        finally:
-            conn.execute("SELECT pg_advisory_unlock(7)")
+    if stale:
+        with conn.transaction():
+            if conn.execute("SELECT pg_try_advisory_xact_lock(7) AS ok").fetchone()["ok"]:
+                print("plans:", plans.load(conn, live=os.environ.get("PLANS_SOURCE") != "snapshot"))
 
 
 def main(drain=False):
