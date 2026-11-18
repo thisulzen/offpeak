@@ -1,0 +1,39 @@
+name: deploy
+# Manual only. Needs repo variables AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID
+# (a federated credential on an app registration, no stored secrets) and AZURE_RESOURCE_GROUP.
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+  packages: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Push images to GHCR
+        run: |
+          echo "${{ github.token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          repo=ghcr.io/${GITHUB_REPOSITORY,,}
+          docker build -t $repo/api:${{ github.sha }} api
+          docker build -t $repo/web:${{ github.sha }} web
+          docker push $repo/api:${{ github.sha }}
+          docker push $repo/web:${{ github.sha }}
+          echo "REPO=$repo" >> $GITHUB_ENV
+
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Bicep
+        run: |
+          az deployment group create \
+            --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
+            --template-file infra/main.bicep \
+            --parameters apiImage=$REPO/api:${{ github.sha }} webImage=$REPO/web:${{ github.sha }} \
+            --query properties.outputs.url.value -o tsv
